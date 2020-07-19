@@ -1,0 +1,40 @@
+#simple 30 linesof python code to track your personal finance 
+# wrote by Sall Ismail 
+import numpy as np 
+import pandas as pd
+income= int(input('Monthly revenue = '))
+rent= int(input('Rent or Mortgage = '))
+Food= int(input('Grocery and Dinner out = '))
+Credit= int(input('Pay Debts and Credits Card = '))
+car= int(input('Car payment and Insurrance = '))
+Emergency= int(input('Medical Bill or Emergency = '))
+Lifestyle= int(input('Lifestyle Spend  = '))
+Charity= int(input('Charity or Donation  = '))
+Spend= (rent+Food+Credit+Emergency+Lifestyle+Charity)
+save= income-Spend 
+
+df=pd.DataFrame.from_records({'Rent':rent,'Food':Food,'Credit':Credit,'Emergency':Emergency,'Lifestyle':Lifestyle,'Charity':Charity},
+                             index=[0])
+print(df)
+
+dg= pd.DataFrame({'Income':income,'Spend':Spend,'Saving':save},index=[0])
+print(dg)
+
+
+import matplotlib.pyplot as plt
+labels='Rent','Food','Credit','Emergency','Lifestyle','Charity'
+size=[rent,Food,Credit,Emergency,Lifestyle,Charity]
+explode=(0.1,0,0,0,0,0)
+fig1,ax1=plt.subplots()
+ax1.pie(size,explode=explode,labels=labels,autopct='%1.1f%%',shadow=True,startangle=90)
+ax1.axis('equal')
+plt.show()
+
+
+
+print('You Spend ',Spend,'$, This Month fellow ')
+if save > 0 :
+	print ('Congration, you save ', save,'$ ,You can do better')
+else:
+	print ('Oh be aware, cause you spend more than your earn this Month',save,'$')
+###    
